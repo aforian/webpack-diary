@@ -4,3 +4,8 @@ div {
   text-align: center;
   font-weight: bold;
 }
+
+img {
+  max-width: 200px;
+  display: inline-block;
+}

@@ -10,3 +10,7 @@ diary for learning webpack
 - webpack.config.js 其它常用屬性（devtool，module）
 - CSS及其它檔案類型透過設定module的rules配置loader並進行編譯和打包
 - 分離提取CSS的方法
+
+## Day3 result
+- webpack處理圖片載入的方式
+- 配合Babel處理瀏覽器相容性問題

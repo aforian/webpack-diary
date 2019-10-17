@@ -5,8 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  // mode: 'development',
-  mode: 'production',
   devtool: 'inline-source-map',
   entry: './src/index.js',
   output: {
@@ -14,50 +12,30 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devServer: {
-    // 必须配置的选项，服务启动的目录，默认为跟目录
+    // 虛擬伺服器啟動目錄
     contentBase: './dist',
-    // 使用热加载时需要设置为 true
+    // 是否啟用hot-reload
     hot: true,
-    /**
-     * 下面为可选配置
-     */
-    // 指定使用一个 host。默认是 localhost
+    // 指定使用host與port。預設值是 localhost:8000
     host: 'localhost',
-    // 端口号
     port: 8000,
-    // 当使用 HTML5 History API 时，任意的 404 响应都可能需要被替代为 index.html。通过设置为 true 进行启用
+    // 當使用 HTML5 History API 時，所有的 404 response會導向index.html。disableDotRule選擇是否啟用
     historyApiFallback: {
       disableDotRule: false
     },
-    // 出现错误时是否在浏览器上出现遮罩层提示
+    // 出現錯誤時是否在瀏覽器上出現遮罩層提示
     overlay: true,
     /**
-     * 在 dev-server 的两种不同模式之间切换
-     *   默认情况下，应用程序启用内联模式 inline
-     *   设置为 false，使用 iframe 模式，它在通知栏下面使用 <iframe> 标签，包含了关于构建的消息
-     */
-    inline: true,
-    /**
-     * 统计信息，枚举类型，可供选项：
-     *      "errors-only": 只在发生错误时输出
-     *      "minimal": 只在发生错误或有新的编译时输出
-     *      "none": 没有输出
-     *      "normal": 标准输出
-     *      "verbose": 全部输出
+     * 統計信息，可用選項：
+     *      "errors-only": 只在發生錯誤時輸出
+     *      "minimal": 只在發生錯誤或有新的編譯時輸出
+     *      "none": 沒有輸出
+     *      "normal": 標準輸出
+     *      "verbose": 全部輸出
      */
     stats: "errors-only",
-    // 设置接口请求代理，更多 proxy 配置请参考 https://github.com/chimurai/http-proxy-middleware#options
-    proxy: {
-      // '/api/': {
-      //     changeOrigin: true,
-      //     // 目标地址
-      //     target: 'http://localhost:3000',
-      //     // 重写路径
-      //     pathRewrite: {
-      //         '^/api/': '/'
-      //     }
-      // }
-    }
+    // 設置接口請求代理，更多 proxy 配置可參考 https://github.com/chimurai/http-proxy-middleware#options
+    proxy: {}
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -75,16 +53,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include: path.resolve(__dirname, 'src'),
+      },
+      {
         test: /\.css$/,
-        // use: [
-        //   'style-loader',
-        //   {
-        //     loader: 'css-loader',
-        //     options: {
-        //       sourceMap: true
-        //     }
-        //   }
-        // ]
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -96,7 +70,20 @@ module.exports = {
             }
           ]
         })
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 100 * 1000,
+              name: 'images/[hash:7].[ext]',
+            },
+          },
+          'image-webpack-loader'
+        ]
+      },
     ]
   }
 
