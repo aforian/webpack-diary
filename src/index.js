@@ -2,6 +2,8 @@ import './index.css'
 import imgUrl1 from './images/javascript.png';
 import imgUrl2 from './images/placehold01.jpeg';
 
+import goodBye from '@/goodBye';
+
 function initBody() {
   var element = document.createElement('div');
   var msg = 'Hello World!!';
@@ -18,6 +20,8 @@ function initBody() {
 
   element.appendChild(img1);
   element.appendChild(img2);
+
+  goodBye();
 
   const arr1 = ['apple','samsung','hauwei'];
   arr1.forEach((item, index) => console.log(`${index}: hello ${item}!`))
