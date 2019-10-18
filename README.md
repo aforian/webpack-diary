@@ -14,3 +14,8 @@ diary for learning webpack
 ## Day3 result
 - webpack處理圖片載入的方式
 - 配合Babel處理瀏覽器相容性問題
+
+## Day4 result
+- 根據場景和需要載入不同的webpack配置
+- 分離出CSS後的壓縮處理
+- resolve屬性簡化引入模組的寫法
