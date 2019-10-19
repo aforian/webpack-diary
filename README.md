@@ -19,3 +19,8 @@ diary for learning webpack
 - 根據場景和需要載入不同的webpack配置
 - 分離出CSS後的壓縮處理
 - resolve屬性簡化引入模組的寫法
+
+## Day5 result
+- 調整Webpack4配置，例如contenthash與plugin替換
+- optimization屬性提升編譯品質
+- postcss與autoprefixer對CSS進行後處理

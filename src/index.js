@@ -1,4 +1,6 @@
-import './index.css'
+import './styles/index.css';
+import './styles/image.css';
+import $ from 'jquery';
 import imgUrl1 from './images/javascript.png';
 import imgUrl2 from './images/placehold01.jpeg';
 
@@ -27,6 +29,12 @@ function initBody() {
   arr1.forEach((item, index) => console.log(`${index}: hello ${item}!`))
 
   return element;
+
 }
 
 document.body.appendChild(initBody());
+
+(function($){
+  $('div').append('<p>Text Here</p>');
+  $('div').append('<p>Text Here 2</p>');
+})($)
