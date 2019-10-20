@@ -1,6 +1,10 @@
-div {
+.container {
   background-color: #6699ff;
   padding: 10px;
   text-align: center;
   font-weight: bold;
+}
+h1 {
+  position: relative;
+  padding: 0;
 }
