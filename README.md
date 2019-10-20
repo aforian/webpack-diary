@@ -24,3 +24,7 @@ diary for learning webpack
 - 調整Webpack4配置，例如contenthash與plugin替換
 - optimization屬性提升編譯品質
 - postcss與autoprefixer對CSS進行後處理
+
+## Day6 result
+- Sass的loader處理
+- Eslint在Webpack專案中的使用
