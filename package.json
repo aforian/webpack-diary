@@ -5,7 +5,7 @@
   "author": "Alex <alexian853@gmail.com>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "webpack --mode production --config webpack.config.prod.js",
     "start": "webpack-dev-server --mode development --config webpack.config.dev.js",
     "lint": "eslint --ext .js src --fix"
@@ -17,6 +17,7 @@
     "@babel/preset-env": "^7.6.3",
     "autoprefixer": "^9.6.5",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.2.0",
@@ -31,6 +32,7 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^6.0.0",
+    "jest": "^24.9.0",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
@@ -54,5 +56,10 @@
   ],
   "dependencies": {
     "jquery": "^3.4.1"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "src(.*)$": "<rootDir>/src/$1"
+    }
   }
 }

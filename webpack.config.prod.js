@@ -101,5 +101,8 @@ module.exports = function(env, argv) {
         '@': path.resolve(__dirname, 'src/components'),
       },
     },
+    externals: {
+      jquery: 'jQuery'
+    },
   }
 }

@@ -28,3 +28,7 @@ diary for learning webpack
 ## Day6 result
 - Sass的loader處理
 - Eslint在Webpack專案中的使用
+
+## Day7 result
+- 使用Jest進行單元測試
+- 使用 externals 排除打包套件
