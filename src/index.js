@@ -5,6 +5,7 @@ import imgUrl1 from './images/javascript.png';
 import imgUrl2 from './images/placehold01.jpeg';
 
 import goodBye from '@/goodBye';
+// import { triangleArea, rectArea } from 'src/utils/math';
 
 function initBody() {
   var element = document.createElement('div');
