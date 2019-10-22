@@ -1,7 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 process.env.NODE_ENV = 'development'
@@ -60,6 +60,39 @@ module.exports = function(env, argv) {
           test: /\.js$/,
           loader: 'babel-loader',
           include: path.resolve(__dirname, 'src'),
+          exclude: /node_modules/
+        },
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+          ],
+        },
+        {
+          test: /\.s(a|c)ss$/,
+          use: [
+            'style-loader',
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                import: true,
+              }
+            },
+            // 'postcss-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            }
+          ],
         },
         {
           test: /\.css$/,
@@ -86,6 +119,8 @@ module.exports = function(env, argv) {
             'image-webpack-loader'
           ]
         },
+
+
       ]
     },
     resolve: {

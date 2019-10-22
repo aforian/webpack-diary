@@ -62,6 +62,15 @@ module.exports = function(env, argv) {
           ]
         },
         {
+          test: /\.s(a|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'
+          ],
+        },
+        {
           test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
           use: [
             {
@@ -74,6 +83,15 @@ module.exports = function(env, argv) {
             'image-webpack-loader'
           ]
         },
+        {
+          test: /\.js$/,
+          loader: 'eslint-loader',
+          enforce: "pre",
+          include: [path.resolve(__dirname, 'src')],
+          options: {
+            formatter: require('eslint-friendly-formatter'),
+          }
+        }
       ]
     },
     resolve: {
