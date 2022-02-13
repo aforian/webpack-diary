@@ -4,16 +4,16 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'development';
 
-module.exports = function(env, argv) {
+module.exports = function (env, argv) {
   return {
     mode: 'development',
     devtool: 'eval',
     entry: './src/index.js',
     output: {
       filename: '[name].js',
-      path: path.resolve(__dirname, 'dist')
+      path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
       // 虛擬伺服器啟動目錄
@@ -25,7 +25,7 @@ module.exports = function(env, argv) {
       port: 8000,
       // 當使用 HTML5 History API 時，所有的 404 response會導向index.html。disableDotRule選擇是否啟用
       historyApiFallback: {
-        disableDotRule: false
+        disableDotRule: false,
       },
       // 出現錯誤時是否在瀏覽器上出現遮罩層提示
       overlay: true,
@@ -38,19 +38,19 @@ module.exports = function(env, argv) {
        *      "normal": 標準輸出
        *      "verbose": 全部輸出
        */
-      stats: "errors-only",
+      stats: 'errors-only',
       // 設置接口請求代理，更多 proxy 配置可參考 https://github.com/chimurai/http-proxy-middleware#options
-      proxy: {}
+      proxy: {},
     },
     plugins: [
       new webpack.DefinePlugin({
-        'process.env': '"production"'
+        'process.env': '"production"',
       }),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NamedModulesPlugin(),
       new HTMLWebpackPlugin({
         title: 'Webpack startup config',
-        template: './public/index.html'
+        template: './public/index.html',
       }),
       new FriendlyErrorsWebpackPlugin(),
     ],
@@ -60,7 +60,7 @@ module.exports = function(env, argv) {
           test: /\.js$/,
           loader: 'babel-loader',
           include: path.resolve(__dirname, 'src'),
-          exclude: /node_modules/
+          exclude: /node_modules/,
         },
         {
           test: /\.css$/,
@@ -68,41 +68,23 @@ module.exports = function(env, argv) {
             'style-loader',
             {
               loader: 'css-loader',
-              options: {
-                sourceMap: true
-              }
-            },
-          ],
-        },
-        {
-          test: /\.s(a|c)ss$/,
-          use: [
-            'style-loader',
-            {
-              loader: 'css-loader',
-              options: {
-                sourceMap: true,
-                import: true,
-              }
-            },
-            // 'postcss-loader',
-            {
-              loader: 'sass-loader',
               options: {
                 sourceMap: true,
               },
-            }
+            },
           ],
         },
         {
-          test: /\.css$/,
+          test: /\.s(a|c)ss$/i,
           use: [
             'style-loader',
+            'css-loader',
             {
-              loader: 'css-loader',
+              loader: 'sass-loader',
               options: {
-                sourceMap: true
-              }
+                // Prefer `dart-sass`
+                implementation: require('sass'),
+              },
             },
           ],
         },
@@ -116,12 +98,11 @@ module.exports = function(env, argv) {
                 name: 'images/[hash:7].[ext]',
               },
             },
-            'image-webpack-loader'
-          ]
+            'image-webpack-loader',
+          ],
         },
 
-
-      ]
+      ],
     },
     resolve: {
       extensions: ['.js'],
@@ -130,5 +111,5 @@ module.exports = function(env, argv) {
         '@': path.resolve(__dirname, 'src/components'),
       },
     },
-  }
-}
+  };
+};

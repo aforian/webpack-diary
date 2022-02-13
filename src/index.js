@@ -1,12 +1,13 @@
 import $ from 'jquery';
 
+import goodBye from '@/goodBye';
+
 import './styles/index.css';
 import './styles/image.css';
 import './sass/index.sass';
 import imgUrl1 from './images/javascript.png';
 import imgUrl2 from './images/placehold01.jpeg';
 
-import goodBye from '@/goodBye';
 // import { triangleArea, rectArea } from 'src/utils/math';
 
 function initBody() {
