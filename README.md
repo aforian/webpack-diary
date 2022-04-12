@@ -32,3 +32,5 @@ diary for learning webpack
 ## Day7 result
 - 使用Jest進行單元測試
 - 使用 externals 排除打包套件
+
+123
